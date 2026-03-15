@@ -1,5 +1,6 @@
 # from typing import
-from utils.strings import partirString
+from utils.strings import partirString, decimalString
+from utils.bases import bases
 
 def leerBinario(string: str) -> int:
 	arreglo: list[str] = list(string)
@@ -12,6 +13,7 @@ def leerBinario(string: str) -> int:
 		suma += 1 * (2**index) if i == "1" else 0
 		index += 1
 
+	# print(suma)
 	return suma
 
 
@@ -21,13 +23,31 @@ def binario(tipo: str, texto: str) -> str | None:
 		# 3 bit grouping
 
 		lista = partirString(texto, 3)
-		final = map(leerBinario, lista)
-		caracter = "".join(map(str, final))
+		final = [ "01234567"[leerBinario(x)] for x in lista]
+		caracter = "".join(final)
 
 		return caracter
 	elif tipo == "#":
-		return "Decimal"
+		# Decimal
+		# Método de Horner
+
+		suma = 0
+		lista = [ bases[x] for x in texto]
+		lista.reverse()
+		for x in lista:
+			suma = suma * 2 + x
+
+		final = decimalString(suma)
+
+		return final
 	elif tipo == "!":
-		return "Hexa"
+		# Hexadecimal
+		# 4 bit grouping
+
+		lista = partirString(texto, 4)
+		final = [ "0123456789ABCDEF"[leerBinario(x)] for x in lista]
+		caracter = "".join(final)
+
+		return caracter
 	else:
 		return None
