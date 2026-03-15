@@ -2,10 +2,10 @@
 
 ## To do:
 - [ ] Crear las funciones necesarias para el programa
-	- [ ] Leer texto
-	- [ ] Eliminar ruido
-	- [ ] Seleccionar x base
-	- [ ] Leer inputs
+	- [X] Leer texto
+	- [X] Eliminar ruido
+	- [X] Seleccionar x base
+	- [X] Leer inputs
 	- [ ] Binario -> Decimal, Octal, Hexa
 	- [ ] Octal -> Binario, Decimal, Hexa
 	- [ ] Decimal -> Binario, Octal, Hexa

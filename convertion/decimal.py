@@ -1,6 +1,6 @@
 # from typing import
 
-def decimal(tipo: str, texto: str) -> str | None
+def decimal(tipo: str, texto: str) -> str | None:
 	if tipo == "*":
 		return "Binario"
 	elif tipo == "&":
