@@ -13,7 +13,6 @@ def leerBinario(string: str) -> int:
 		suma += 1 * (2**index) if i == "1" else 0
 		index += 1
 
-	# print(suma)
 	return suma
 
 
