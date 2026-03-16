@@ -1,7 +1,9 @@
 conversion = {
     '0':0,'1':1,'2':2,'3':3,'4':4,'5':5,'6':6,'7':7,'8':8,'9':9
 }
+valor = 1
 
+mensaje = 1
 
 print("-- DECODIFICADOR DE NOTAS --\n")
 
@@ -47,8 +49,6 @@ while True:
             while pos_segundo_numero < len(linea) and linea[pos_segundo_numero] in "0123456789":
                 pos_segundo_numero += 1
             texto_numero = linea[pos_primer_numero:pos_segundo_numero]
-            """print(caracter)
-            print(linea[i + 1])"""
         i = i + 1
     if linea == "":
         break
