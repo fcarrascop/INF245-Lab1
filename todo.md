@@ -6,9 +6,9 @@
 	- [X] Eliminar ruido
 	- [X] Seleccionar x base
 	- [X] Leer inputs
-	- [ ] Binario -> Decimal, Octal, Hexa
-	- [ ] Octal -> Binario, Decimal, Hexa
-	- [ ] Decimal -> Binario, Octal, Hexa
+	- [X] Binario -> Decimal, Octal, Hexa
+	- [] Octal -> Binario, Decimal, Hexa
+	- [X] Decimal -> Binario, Octal, Hexa
 	- [ ] Hexa -> Binario, Octal, Decimal
 	- [ ] Visualizador outputs
 - [ ] Crear README.md

@@ -1,12 +1,29 @@
-# from typing import
+from utils.bits import bits
+from utils.bases import bases
+from utils.strings import numeroAString
 
 def octal(tipo: str, texto: str) -> str | None:
 	if tipo == "*":
-		return "Binario"
-	elif tipo == "&":
-		return "Octal"
+		# Binario
+		# Agrupación de bits
+		final = ""
+
+		for c in texto:
+			final += bits(3, c)
+
+		return final
 	elif tipo == "#":
-		return "Decimal"
+		# Decimal
+		# Variación Método de Horner
+
+		suma = 0
+		lista = [ bases[x] for x in texto]
+		for x in lista:
+			suma = suma * 8 + x
+
+		final = numeroAString(suma)
+
+		return final
 	elif tipo == "!":
 		return "Hexa"
 	else:
@@ -24,3 +41,6 @@ def leerOctal(numero: int) -> int:
         numero = numero // 10
         potencia = potencia + 1
     return resultado
+
+# print(octal("*", "57"))
+print(octal("#", "57"))

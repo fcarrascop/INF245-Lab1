@@ -22,6 +22,8 @@ def decimalString(numero: int) -> str:
 
 def numeroAString(numero):
     resultado = ""
+    if numero == 0:
+    	return "0"
 
     while numero > 0:
         digito = numero % 10
