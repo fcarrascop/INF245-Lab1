@@ -1,5 +1,5 @@
 # from typing import
-from utils.strings import partirString, decimalString
+from utils.strings import partirString
 from utils.bases import bases
 
 def leerBinario(string: str) -> int:
@@ -36,7 +36,7 @@ def binario(tipo: str, texto: str) -> str | None:
 		for x in lista:
 			suma = suma * 2 + x
 
-		final = decimalString(suma)
+		final = str(suma)
 
 		return final
 	elif tipo == "!":

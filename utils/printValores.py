@@ -1,4 +1,4 @@
-from utils.strings import numeroAAscii, numeroAString, stringANumero
+from utils.strings import numeroAAscii
 
 valores = {
 	"*": "Binario",
@@ -17,9 +17,9 @@ print("Valor "+ numeroAString(valor) + ": "+ numeroFinal + " (Original: Octal &"
 """
 
 def printValores(index: int, mensaje: str, signo: str, inicial: str, final: str) -> None:
-	print("Valor " + numeroAString(index) + ": " + final + " (Original: " + valores[signo] + " " + signo + inicial)
+	print("Valor " + str(index) + ": " + final + " (Original: " + valores[signo] + " " + signo + inicial)
 
 	index += 1
 
-	if stringANumero(final) <= 126 and 32 <= stringANumero(final):
-		mensaje += numeroAAscii(stringANumero(final))
+	if int(final) <= 126 and 32 <= int(final):
+		mensaje += numeroAAscii(int(final))

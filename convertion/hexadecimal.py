@@ -1,9 +1,7 @@
 from convertion.octal import leerOctal
 from utils.bases import bases, basesHexa
-from utils.bits import bits
-from utils.strings import stringANumero
-from utils.strings import numeroAString
-from utils.strings import numeroAAscii
+from utils.bits import bits, bitsHexa
+from utils.strings import partirString
 
 def pasarAHexa(numero: int) -> str:
     hexa = ""
@@ -30,25 +28,11 @@ def hexaString(numero: int) -> str:
 	return final
 
 
-def hexa(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
-		numero = stringANumero(texto)
+def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
 		if tipo == "*":
 			# Binario
 
-			"""
-			nuevoNumero = leerBinario(numero)
-			numeroFinal = pasarAHexa(nuevoNumero)
-
-			print("Valor "+ numeroAString(valor) + ": "+ numeroFinal + " (Original: Octal &"+ numeroAString(numero)+ ")")
-			valor += 1
-
-			if nuevoNumero <= 126 and 32 <= nuevoNumero:
-				mensaje = mensaje + numeroAAscii(nuevoNumero)
-				print(mensaje)
-
-			return numeroFinal
-			"""
 			final = ""
 
 			for c in texto:
@@ -60,7 +44,9 @@ def hexa(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 			# Octal
 			# Conversión de base pasando por decimal
 
-			nuevoNumero = leerOctal(numero)
+			
+
+			"""nuevoNumero = leerOctal(numero)
 			numeroFinal = pasarAHexa(nuevoNumero)
 
 			print("Valor "+ numeroAString(valor) + ": "+ numeroFinal + " (Original: Octal &"+ numeroAString(numero)+ ")")
@@ -70,7 +56,7 @@ def hexa(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 			if nuevoNumero <= 126 and 32 <= nuevoNumero:
 				mensaje = mensaje + numeroAAscii(nuevoNumero)
 				print(mensaje)
-			return numeroFinal
+			return numeroFinal"""
 
 		elif tipo == "#":
 			# Decimal
@@ -99,6 +85,8 @@ def hexa(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 		else:
 			return None
 
-# print(hexa("*", "2F", 1, ""))
+#pene2= bitsHexa(str(145))
+#print(partirString(pene2, 4))
+print(hexa("*", "2F", 1, ""))
 # print(hexa("#", "2D", 1, ""))
 # Yo (felipe) estuve modificando algunas cosas por acá, por lo que si algo falla, toda la culpa a mi.

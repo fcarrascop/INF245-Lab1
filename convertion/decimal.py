@@ -1,10 +1,11 @@
-from utils.strings import stringANumero
+from utils.bases import bases
+from utils.ascii import ascii
 
 def decimal(tipo: str, texto: str) -> str | None:
 	if tipo == "*":
 		# Binario
 		# División repetida
-		numero = stringANumero(texto)
+		numero = int(texto)
 		final = ""
 
 		while numero > 0:
@@ -16,7 +17,7 @@ def decimal(tipo: str, texto: str) -> str | None:
 	elif tipo == "&":
 		# Octal
 		# División repetida
-		numero = stringANumero(texto)
+		numero = int(texto)
 		final = ""
 
 		while numero > 0:
@@ -29,7 +30,7 @@ def decimal(tipo: str, texto: str) -> str | None:
 		# Hexadecimal
 		# División repetida
 
-		numero = stringANumero(texto)
+		numero = int(texto)
 		final = ""
 
 		while numero > 0:
@@ -41,4 +42,16 @@ def decimal(tipo: str, texto: str) -> str | None:
 	else:
 		return None
 
+def numeroAscii(numero: str, base: int) -> str:
+	valor = 0
+
+	for digito in numero:
+		valor = valor * base + bases[digito]
+
+	if valor <= 126 and 32 <= valor:
+		letraMensaje = ascii[valor]
+		return letraMensaje
+	
+	else:
+		return None
 print(decimal("!", "255"))

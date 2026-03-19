@@ -1,6 +1,6 @@
 from utils.bits import bits
 from utils.bases import bases
-from utils.strings import numeroAString
+from utils.strings import partirString
 
 def octal(tipo: str, texto: str) -> str | None:
 	if tipo == "*":
@@ -21,7 +21,7 @@ def octal(tipo: str, texto: str) -> str | None:
 		for x in lista:
 			suma = suma * 8 + x
 
-		final = numeroAString(suma)
+		final = str(suma)
 
 		return final
 	elif tipo == "!":
@@ -42,5 +42,5 @@ def leerOctal(numero: int) -> int:
         potencia = potencia + 1
     return resultado
 
-# print(octal("*", "57"))
-print(octal("#", "57"))
+pene = octal("*", "57")
+print(partirString(pene, 4))
