@@ -68,3 +68,10 @@ def get_user_by_id(user_id: int) -> dict | None:
         {"id": 10, "name": "Felipe"}
     """
 ```
+
+## Instrucciones para el TOM
+
+- Si quieres traer los cambios desde mi rama (estando tú en `main`) y no has hecho más cambios en tu rama, tienes que escribir:
+```git
+git fetch && git reset --hard origin/felipe
+```
