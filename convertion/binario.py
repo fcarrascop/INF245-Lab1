@@ -17,36 +17,39 @@ def leerBinario(string: str) -> int:
 
 
 def binario(tipo: str, texto: str) -> str | None:
-	if tipo == "&":
+
+    if tipo == "*":
+        return texto
+    elif tipo == "&":
 		# Octal
 		# 3 bit grouping
 
-		lista = partirString(texto, 3)
-		final = [ "01234567"[leerBinario(x)] for x in lista]
-		caracter = "".join(final)
+        lista = partirString(texto, 3)
+        final = [ "01234567"[leerBinario(x)] for x in lista]
+        caracter = "".join(final)
 
-		return caracter
-	elif tipo == "#":
-		# Decimal
-		# Método de Horner
+        return caracter
+    elif tipo == "#":
+    	# Decimal
+    	# Método de Horner
 
-		suma = 0
-		lista = [ bases[x] for x in texto]
-		lista.reverse()
-		for x in lista:
-			suma = suma * 2 + x
+        suma = 0
+        lista = [ bases[x] for x in texto]
+        lista.reverse()
+        for x in lista:
+            suma = suma * 2 + x
 
-		final = str(suma)
+        final = str(suma)
 
-		return final
-	elif tipo == "!":
-		# Hexadecimal
-		# 4 bit grouping
+        return final
+    elif tipo == "!":
+        # Hexadecimal
+        # 4 bit grouping
 
-		lista = partirString(texto, 4)
-		final = [ "0123456789ABCDEF"[leerBinario(x)] for x in lista]
-		caracter = "".join(final)
+        lista = partirString(texto, 4)
+        final = [ "0123456789ABCDEF"[leerBinario(x)] for x in lista]
+        caracter = "".join(final)
 
-		return caracter
-	else:
-		return None
+        return caracter
+    else:
+        return None

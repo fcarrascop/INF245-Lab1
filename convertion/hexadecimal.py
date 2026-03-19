@@ -28,65 +28,56 @@ def hexaString(numero: int) -> str:
 	return final
 
 
-def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
+def hexadecimal(tipo: str, texto: str) -> str | None:
 
-		if tipo == "*":
+        if tipo == "!":
+            return texto
+        elif tipo == "*":
 			# Binario
 
-			final = ""
+            final = ""
 
-			for c in texto:
-				final += bits(4, c)
+            for c in texto:
+                final += bits(4, c)
 
-			return final
+            return final
 
-		elif tipo == "&":
+        elif tipo == "&":
 			# Octal
 			# Conversión de base pasando por decimal
 
-			
 
-			"""nuevoNumero = leerOctal(numero)
+
+            """nuevoNumero = leerOctal(numero)
 			numeroFinal = pasarAHexa(nuevoNumero)
 
 			print("Valor "+ numeroAString(valor) + ": "+ numeroFinal + " (Original: Octal &"+ numeroAString(numero)+ ")")
 			valor += 1
+			"""
 
-			# todo: eliminar esto
-			if nuevoNumero <= 126 and 32 <= nuevoNumero:
-				mensaje = mensaje + numeroAAscii(nuevoNumero)
-				print(mensaje)
-			return numeroFinal"""
-
-		elif tipo == "#":
+        elif tipo == "#":
 			# Decimal
 			# ~Expanción posicional~
 			# Variación Método de Horner
 
-			"""
+            """
 			numeroFinal = pasarAHexa(numero)
 			final = stringANumero(numeroFinal)
 			print("Valor "+ numeroAString(valor) + ": "+ numeroFinal + " (Original: Octal &"+ numeroAString(numero)+ ")")
 			valor += 1
-			# todo: eliminar esto
-			if nuevoNumero <= 126 and 32 <= nuevoNumero:
-				mensaje = mensaje + numeroAAscii(final)
-				print(mensaje)
 			"""
 
-			suma = 0
-			lista = [ bases[x] for x in texto]
-			for x in lista:
-				suma = suma * 16 + x
+            suma = 0
+            lista = [ bases[x] for x in texto]
+            for x in lista:
+                suma = suma * 16 + x
 
-			final = hexaString(suma)
+            print(f"suma: {suma}")
+            final = hexaString(suma)
 
-			return final
-		else:
-			return None
+            return final
+        else:
+            return ""
 
-#pene2= bitsHexa(str(145))
-#print(partirString(pene2, 4))
-print(hexa("*", "2F", 1, ""))
-# print(hexa("#", "2D", 1, ""))
+
 # Yo (felipe) estuve modificando algunas cosas por acá, por lo que si algo falla, toda la culpa a mi.
