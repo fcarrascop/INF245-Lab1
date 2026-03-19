@@ -1,4 +1,4 @@
-from utils.bases import bases
+from utils.bases import bases, bases, basesHexa
 
 def bits(cantidadBits: int, numero: str) -> str:
 	final = ""
@@ -21,3 +21,20 @@ def bitsHexa(numero: str) -> str:
 		numeroInt //= 2
 
 	return final[::-1]
+
+
+def numeroAbinario(numero: str, cantidadBits: int) -> str:
+    resultado = ""
+
+    for digito in numero:
+        n = bases[digito] 
+
+        bits = ""
+        for _ in range(cantidadBits):
+            resto = n % 2
+            bits += "1" if resto == 1 else "0"
+            n //= 2
+
+        resultado += bits[::-1]
+
+    return resultado

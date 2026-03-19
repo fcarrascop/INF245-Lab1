@@ -1,7 +1,8 @@
 from convertion.octal import leerOctal
-from utils.bases import bases, basesHexa
-from utils.bits import bits, bitsHexa
-from utils.strings import partirString
+from utils.bases import bases, basesHexa, binarioAHex
+from utils.bits import bits, bitsHexa, numeroAbinario
+from utils.strings import partirString, MetodoHorner
+from utils.printValores import printValores
 
 def pasarAHexa(numero: int) -> str:
     hexa = ""
@@ -27,57 +28,55 @@ def hexaString(numero: int) -> str:
 	final = "".join(texto)
 	return final
 
+def leerBinAHexa(binario: list) -> str:
+	numFinal = ""
+	print(binario)
+	for grupos in binario:
+		numFinal += binarioAHex[grupos]
 
-def hexadecimal(tipo: str, texto: str) -> str | None:
+	return numFinal
+	
 
-        if tipo == "!":
-            return texto
-        elif tipo == "*":
+
+def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
+
+		if tipo == "!":
+			return texto
+		elif tipo == "*":
 			# Binario
 
-            final = ""
+			numFinal = leerBinAHexa(partirString(texto, 4))
+			
+			printValores(valor, mensaje, tipo, texto, numFinal, 16)
 
-            for c in texto:
-                final += bits(4, c)
+			return None
 
-            return final
-
-        elif tipo == "&":
+		elif tipo == "&":
 			# Octal
 			# Conversión de base pasando por decimal
 
+			numeroNuevo = numeroAbinario(texto, 3)
+			
+			numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
 
+			printValores(valor, mensaje, tipo, texto, numFinal, 16)
 
-            """nuevoNumero = leerOctal(numero)
-			numeroFinal = pasarAHexa(nuevoNumero)
+			return None
 
-			print("Valor "+ numeroAString(valor) + ": "+ numeroFinal + " (Original: Octal &"+ numeroAString(numero)+ ")")
-			valor += 1
-			"""
-
-        elif tipo == "#":
+		elif tipo == "#":
 			# Decimal
 			# ~Expanción posicional~
 			# Variación Método de Horner
 
-            """
-			numeroFinal = pasarAHexa(numero)
-			final = stringANumero(numeroFinal)
-			print("Valor "+ numeroAString(valor) + ": "+ numeroFinal + " (Original: Octal &"+ numeroAString(numero)+ ")")
-			valor += 1
-			"""
+			numFinal = pasarAHexa(int(texto))
 
-            suma = 0
-            lista = [ bases[x] for x in texto]
-            for x in lista:
-                suma = suma * 16 + x
+			printValores(valor, mensaje, tipo, texto, str(numFinal), 16)
 
-            print(f"suma: {suma}")
-            final = hexaString(suma)
+			return None
+		else:
+			return ""
 
-            return final
-        else:
-            return ""
-
+hexadecimal("#", "111", 1, "")
+#print(numeroAbinario("145", 3))
 
 # Yo (felipe) estuve modificando algunas cosas por acá, por lo que si algo falla, toda la culpa a mi.

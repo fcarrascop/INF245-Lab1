@@ -79,7 +79,16 @@ def leerArchivo():
 
                 textoNumero = linea[pos_primer_numero:pos_segundo_numero]
 
-                if (len(textoNumero) > 0):
+                if baseSolicitada == 16:
+                    hexadecimal(caracter, textoNumero, valor, mensaje)
+                elif baseSolicitada == 10:
+                    decimal(caracter, textoNumero, valor, mensaje)
+                elif baseSolicitada == 8:
+                    octal(caracter, textoNumero, valor, mensaje)
+                elif baseSolicitada == 2:
+                    binario(caracter, textoNumero, valor, mensaje)
+
+                """if (len(textoNumero) > 0):
                     print(f"caracter: {caracter}")
                     transformado = transformaciones[caracter](baseSigno[baseSolicitada], textoNumero)
 
@@ -87,7 +96,7 @@ def leerArchivo():
                     print(textoNumero)
                     print(transformado)
 
-                    valor, mensaje = printValores(valor, mensaje, caracter, textoNumero, transformado)
+                    valor, mensaje = printValores(valor, mensaje, caracter, textoNumero, transformado)"""
             i = i + 1
 
     archivo.close()
