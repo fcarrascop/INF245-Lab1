@@ -1,6 +1,6 @@
 # from typing import
 from utils.strings import partirString
-from utils.bases import bases
+from utils.bases import bases, binarioAHex
 
 def leerBinario(string: str) -> int:
 	arreglo: list[str] = list(string)
@@ -47,7 +47,7 @@ def binario(tipo: str, texto: str) -> str | None:
         # 4 bit grouping
 
         lista = partirString(texto, 4)
-        final = [ "0123456789ABCDEF"[leerBinario(x)] for x in lista]
+        final = [ binarioAHex[x] for x in lista]
         caracter = "".join(final)
 
         return caracter
