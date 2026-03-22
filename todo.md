@@ -28,6 +28,14 @@
 - [ ] Pruebas con ejemplos (Chatgpt)
 - [ ] (opcional) Divertirse
 
+## Que nos falta
+
+- [ ] Octal a hexa
+- [ ] Hexa a octal
+- [ ] Imprimir bien los outputs (Mensaje, )
+- [ ] Documentar funciones
+- [ ] Crear el readme
+
 ## Problemas (según codex)
 Problemas principales
 - hexadecimal.py: cuando el tipo es # (decimal → hexadecimal) devuelves str(suma) en decimal, no en base 16. Eso rompe el resultado en base 16 y el mensaje ASCII.
