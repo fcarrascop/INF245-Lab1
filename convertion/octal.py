@@ -1,6 +1,7 @@
 from utils.bits import bits
 from utils.bases import bases
 from utils.strings import partirString
+from utils.strings import MetodoHorner
 
 def octal(tipo: str, texto: str) -> str | None:
     if tipo == "&":
@@ -18,12 +19,14 @@ def octal(tipo: str, texto: str) -> str | None:
         # Decimal
         # Variación Método de Horner
 
-        suma = 0
+        """suma = 0
         lista = [ bases[x] for x in texto]
         for x in lista:
             suma = suma * 8 + x
 
-        final = str(suma)
+        final = str(suma)"""
+        final = MetodoHorner(texto, 8)
+        print(final)
 
         return final
     elif tipo == "!":
@@ -43,3 +46,5 @@ def leerOctal(numero: int) -> int:
         numero = numero // 10
         potencia = potencia + 1
     return resultado
+
+octal("#", "176")
