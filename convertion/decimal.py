@@ -1,5 +1,7 @@
 from utils.bases import bases
 from utils.ascii import ascii
+from utils.strings import MetodoHorner
+from utils.printValores import printValores
 
 def decimal(tipo: str, texto: str) -> str | None:
 
@@ -8,40 +10,38 @@ def decimal(tipo: str, texto: str) -> str | None:
     elif tipo == "*":
     	# Binario
     	# División repetida
-        numero = int(texto)
-        final = ""
+        suma = 0
 
-        while numero > 0:
-            resto = numero % 2
-            final += "01"[resto]
-            numero //= 2
+        for x in texto:
+            suma = suma * 2 + bases[x]
 
-        return final[::-1]
+        return str(suma)
+
+        return final
+
     elif tipo == "&":
     	# Octal
     	# División repetida
-        numero = int(texto)
-        final = ""
+        suma = 0
+        lista = [ bases[x] for x in texto]
+        for x in lista:
+            suma = suma * 8 + x
 
-        while numero > 0:
-            resto = numero % 8
-            final += "01234567"[resto]
-            numero //= 8
+        final = str(suma)
+        
+        print(final)
 
-        return final[::-1]
+        return final
+    
     elif tipo == "!":
     	# Hexadecimal
     	# División repetida
 
-        numero = int(texto)
-        final = ""
+        print(MetodoHorner(texto, 16))
+        printValores(1, "", tipo, texto, str(MetodoHorner(texto, 16)), 10)
 
-        while numero > 0:
-            resto = numero % 16
-            final += "0123456789ABCDEF"[resto]
-            numero //= 16
-
-        return final[::-1]
+        return None
     else:
     	return None
 
+print(decimal("!", "41"))

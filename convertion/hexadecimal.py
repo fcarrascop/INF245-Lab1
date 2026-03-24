@@ -6,10 +6,9 @@ from utils.printValores import printValores
 
 def pasarAHexa(numero: int) -> str:
     hexa = ""
-    letras = "0123456789ABCDEF"
 
     while numero > 0:
-        hexa = letras[numero % 16] + hexa
+        hexa = basesHexa[numero % 16] + hexa
         numero = numero // 16
 
     return(hexa)
@@ -35,6 +34,45 @@ def leerBinAHexa(binario: list) -> str:
 		numFinal += binarioAHex[grupos]
 
 	return numFinal
+
+def dividir_octal_por_20(numero_octal):
+    cociente = ""
+    resto = 0
+
+    for digito in numero_octal:
+        # convertir carácter a número (sin usar int)
+        valor = int(digito)
+
+        # acumulación en base 8 (simula la división larga)
+        acumulado = resto * 8 + valor
+
+        # dividir entre 20₈ (equivale a 16)
+        digito_cociente = acumulado // 16
+        resto = acumulado % 16
+
+        # evitar ceros a la izquierda
+        if cociente != "" or digito_cociente != 0:
+            cociente += chr(digito_cociente + ord('0'))
+
+    if cociente == "":
+        cociente = "0"
+
+    return cociente, resto
+
+
+def octal_a_hex(octal):
+    resultado = ""
+
+    while octal != "0":
+        cociente, resto = dividir_octal_por_20(octal)
+
+        # agregar el dígito hexadecimal correspondiente
+        resultado = basesHexa[resto] + resultado
+
+        # continuar con el cociente
+        octal = cociente
+
+    return resultado
 	
 
 
@@ -55,11 +93,12 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 			# Octal
 			# Conversión de base pasando por decimal
 
-			numeroNuevo = numeroAbinario(texto, 3)
+			print(octal_a_hex(texto))
+			"""numeroNuevo = numeroAbinario(texto, 3)
 			
 			numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
 
-			printValores(valor, mensaje, tipo, texto, numFinal, 16)
+			printValores(valor, mensaje, tipo, texto, numFinal, 16)"""
 
 			return None
 
@@ -76,7 +115,7 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 		else:
 			return ""
 
-hexadecimal("#", "111", 1, "")
+print(hexadecimal("*", "100000", 1, ""))
 #print(numeroAbinario("145", 3))
 
 # Yo (felipe) estuve modificando algunas cosas por acá, por lo que si algo falla, toda la culpa a mi.

@@ -1,6 +1,7 @@
 # from typing import
 from utils.strings import partirString
-from utils.bases import bases, binarioAHex
+from utils.bases import bases, hexABinario
+from utils.bits import bits
 
 def leerBinario(string: str) -> int:
 	arreglo: list[str] = list(string)
@@ -24,32 +25,36 @@ def binario(tipo: str, texto: str) -> str | None:
 		# Octal
 		# 3 bit grouping
 
-        lista = partirString(texto, 3)
-        final = [ "01234567"[leerBinario(x)] for x in lista]
-        caracter = "".join(final)
+        final = ""
 
-        return caracter
+        for c in texto:
+            final += bits(3, c)
+
+        return final
     elif tipo == "#":
     	# Decimal
     	# Método de Horner
+        numero = int(texto)
+        final = ""
 
-        suma = 0
-        lista = [ bases[x] for x in texto]
-        lista.reverse()
-        for x in lista:
-            suma = suma * 2 + x
+        while numero > 0:
+            resto = numero % 2
+            final += "01"[resto]
+            numero //= 2
 
-        final = str(suma)
-
-        return final
+        return final[::-1]
+    
     elif tipo == "!":
         # Hexadecimal
         # 4 bit grouping
+        resultado = ""
 
-        lista = partirString(texto, 4)
-        final = [ binarioAHex[x] for x in lista]
-        caracter = "".join(final)
+        textoHex = texto.upper()  
 
-        return caracter
-    else:
-        return None
+        for digito in textoHex:
+            resultado += hexABinario[digito]
+        
+        print(resultado)
+        return resultado
+    
+print(binario("!", "AF3"))

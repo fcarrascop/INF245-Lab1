@@ -2,6 +2,7 @@ from utils.bits import bits
 from utils.bases import bases
 from utils.strings import partirString
 from utils.strings import MetodoHorner
+from convertion.binario import leerBinario
 
 def octal(tipo: str, texto: str) -> str | None:
     if tipo == "&":
@@ -9,26 +10,25 @@ def octal(tipo: str, texto: str) -> str | None:
     elif tipo == "*":
         # Binario
         # Agrupación de bits
-        final = ""
+        lista = partirString(texto, 3)
+        final = [ "01234567"[leerBinario(x)] for x in lista]
+        caracter = "".join(final)
 
-        for c in texto:
-            final += bits(3, c)
-
-        return final
+        return caracter
+    
     elif tipo == "#":
         # Decimal
         # Variación Método de Horner
+        numero = int(texto)
+        final = ""
 
-        """suma = 0
-        lista = [ bases[x] for x in texto]
-        for x in lista:
-            suma = suma * 8 + x
+        while numero > 0:
+            resto = numero % 8
+            final += "01234567"[resto]
+            numero //= 8
 
-        final = str(suma)"""
-        final = MetodoHorner(texto, 8)
-        print(final)
-
-        return final
+        return final[::-1]
+    
     elif tipo == "!":
         return "Hexa"
     else:

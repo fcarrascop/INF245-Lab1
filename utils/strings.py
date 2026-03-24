@@ -18,6 +18,8 @@ def numeroAAscii(numero: str, base: int) -> str:
         return ""
 
 def MetodoHorner(numero: str, base: int) -> int:
+	numero.upper()
+
 	valor = 0
 
 	for digito in numero:
