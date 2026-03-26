@@ -2,7 +2,7 @@ from utils.bits import bits
 from utils.bases import bases
 from utils.strings import partirString
 from utils.strings import MetodoHorner
-from convertion.binario import leerBinario
+from convertion.binario import leerBinario, binario
 
 def octal(tipo: str, texto: str) -> str | None:
     if tipo == "&":
@@ -15,7 +15,7 @@ def octal(tipo: str, texto: str) -> str | None:
         caracter = "".join(final)
 
         return caracter
-    
+
     elif tipo == "#":
         # Decimal
         # Variación Método de Horner
@@ -28,9 +28,14 @@ def octal(tipo: str, texto: str) -> str | None:
             numero //= 8
 
         return final[::-1]
-    
+
     elif tipo == "!":
-        return "Hexa"
+
+        bits = binario("!", texto)
+        final = [ str(leerBinario(x)) for x in partirString(bits, 3)]
+        caracter = "".join(final)
+
+        return caracter
     else:
         return None
 
@@ -47,4 +52,4 @@ def leerOctal(numero: int) -> int:
         potencia = potencia + 1
     return resultado
 
-octal("#", "176")
+print(octal("!", "420"))

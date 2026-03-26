@@ -43,18 +43,17 @@ def binario(tipo: str, texto: str) -> str | None:
             numero //= 2
 
         return final[::-1]
-    
+
     elif tipo == "!":
         # Hexadecimal
         # 4 bit grouping
         resultado = ""
 
-        textoHex = texto.upper()  
+        textoHex = texto.upper()
 
         for digito in textoHex:
             resultado += hexABinario[digito]
-        
-        print(resultado)
+
         return resultado
-    
-print(binario("!", "AF3"))
+
+# print(binario("!", "AF3"))

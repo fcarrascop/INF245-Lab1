@@ -1,6 +1,5 @@
-from convertion.octal import leerOctal
-from utils.bases import bases, basesHexa, binarioAHex
-from utils.bits import bits, bitsHexa, numeroAbinario
+from utils.bases import basesHexa, binarioAHex
+from utils.bits import numeroAbinario
 from utils.strings import partirString, MetodoHorner
 from utils.printValores import printValores
 
@@ -73,10 +72,10 @@ def octal_a_hex(octal):
         octal = cociente
 
     return resultado
-	
 
 
-def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
+
+def hexadecimal(tipo: str, texto: str, valor: int = 0, mensaje: str = "") -> str | None:
 
 		if tipo == "!":
 			return texto
@@ -84,7 +83,7 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 			# Binario
 
 			numFinal = leerBinAHexa(partirString(texto, 4))
-			
+
 			printValores(valor, mensaje, tipo, texto, numFinal, 16)
 
 			return None
@@ -93,14 +92,12 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 			# Octal
 			# Conversión de base pasando por decimal
 
-			print(octal_a_hex(texto))
-			"""numeroNuevo = numeroAbinario(texto, 3)
-			
+			numeroNuevo = numeroAbinario(texto, 3)
 			numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
 
-			printValores(valor, mensaje, tipo, texto, numFinal, 16)"""
+			# printValores(valor, mensaje, tipo, texto, numFinal, 16)
 
-			return None
+			return numFinal
 
 		elif tipo == "#":
 			# Decimal
@@ -114,8 +111,5 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 			return None
 		else:
 			return ""
-
-print(hexadecimal("*", "100000", 1, ""))
-#print(numeroAbinario("145", 3))
 
 # Yo (felipe) estuve modificando algunas cosas por acá, por lo que si algo falla, toda la culpa a mi.

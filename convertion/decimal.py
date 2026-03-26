@@ -17,7 +17,7 @@ def decimal(tipo: str, texto: str) -> str | None:
 
         return str(suma)
 
-        return final
+        # return final
 
     elif tipo == "&":
     	# Octal
@@ -28,11 +28,11 @@ def decimal(tipo: str, texto: str) -> str | None:
             suma = suma * 8 + x
 
         final = str(suma)
-        
+
         print(final)
 
         return final
-    
+
     elif tipo == "!":
     	# Hexadecimal
     	# División repetida
@@ -44,4 +44,4 @@ def decimal(tipo: str, texto: str) -> str | None:
     else:
     	return None
 
-print(decimal("!", "41"))
+# print(decimal("!", "41"))
