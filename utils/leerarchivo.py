@@ -98,9 +98,14 @@ def leerArchivo():
 
                     valor, mensaje = printValores(valor, mensaje, caracter, textoNumero, transformado)"""
             i = i + 1
+        break
+
+    print("--------------------------------------------------")
+    print("MENSAJE DECODIFICADO")
+    print(f"{mensaje}\n")
+    print("[Proceso finalizado con éxito]")
 
     archivo.close()
 
-    print(f"mensaje final: {mensaje}")
 
 leerArchivo()
