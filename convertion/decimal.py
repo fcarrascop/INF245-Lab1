@@ -3,7 +3,7 @@ from utils.ascii import ascii
 from utils.strings import MetodoHorner
 from utils.printValores import printValores
 
-def decimal(tipo: str, texto: str) -> str | None:
+def decimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
     if tipo == "#":
         return texto

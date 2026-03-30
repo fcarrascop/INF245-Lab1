@@ -34,48 +34,8 @@ def leerBinAHexa(binario: list) -> str:
 
 	return numFinal
 
-def dividir_octal_por_20(numero_octal):
-    cociente = ""
-    resto = 0
 
-    for digito in numero_octal:
-        # convertir carácter a número (sin usar int)
-        valor = int(digito)
-
-        # acumulación en base 8 (simula la división larga)
-        acumulado = resto * 8 + valor
-
-        # dividir entre 20₈ (equivale a 16)
-        digito_cociente = acumulado // 16
-        resto = acumulado % 16
-
-        # evitar ceros a la izquierda
-        if cociente != "" or digito_cociente != 0:
-            cociente += chr(digito_cociente + ord('0'))
-
-    if cociente == "":
-        cociente = "0"
-
-    return cociente, resto
-
-
-def octal_a_hex(octal):
-    resultado = ""
-
-    while octal != "0":
-        cociente, resto = dividir_octal_por_20(octal)
-
-        # agregar el dígito hexadecimal correspondiente
-        resultado = basesHexa[resto] + resultado
-
-        # continuar con el cociente
-        octal = cociente
-
-    return resultado
-
-
-
-def hexadecimal(tipo: str, texto: str, valor: int = 0, mensaje: str = "") -> str | None:
+def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
 		if tipo == "!":
 			return texto
@@ -95,7 +55,7 @@ def hexadecimal(tipo: str, texto: str, valor: int = 0, mensaje: str = "") -> str
 			numeroNuevo = numeroAbinario(texto, 3)
 			numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
 
-			# printValores(valor, mensaje, tipo, texto, numFinal, 16)
+			printValores(valor, mensaje, tipo, texto, numFinal, 16)
 
 			return numFinal
 

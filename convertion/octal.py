@@ -4,7 +4,7 @@ from utils.strings import partirString
 from utils.strings import MetodoHorner
 from convertion.binario import leerBinario, binario
 
-def octal(tipo: str, texto: str) -> str | None:
+def octal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
     if tipo == "&":
         return texto
     elif tipo == "*":

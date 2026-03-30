@@ -17,7 +17,7 @@ def leerBinario(string: str) -> int:
 	return suma
 
 
-def binario(tipo: str, texto: str) -> str | None:
+def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
     if tipo == "*":
         return texto
