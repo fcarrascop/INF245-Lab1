@@ -2,7 +2,6 @@ from convertion.binario import binario
 from convertion.octal import octal
 from convertion.decimal import decimal
 from convertion.hexadecimal import hexadecimal
-
 from utils.printValores import printValores
 
 
@@ -36,11 +35,12 @@ archivo = "notas_dm.txt"
 # archivo = "notas_dm_base10.txt"
 # archivo = "notas_dm_base16.txt"
 
-valor = 1
-mensaje = ""
-
 def leerArchivo():
     global valor, mensaje, archivo
+
+    valor = 1
+    mensaje = ""
+    archivo = "notas_dm.txt"
 
     print("-- DECODIFICADOR DE NOTAS --\n")
     baseSolicitada = input("Ingrese la base en la que desea visualizar los datos (2, 8, 10, 16): ")
@@ -60,7 +60,6 @@ def leerArchivo():
 
     while True:
         linea = archivo.readline()
-        print(linea)
 
         if linea == "":
             break
@@ -78,15 +77,17 @@ def leerArchivo():
                     pos_segundo_numero += 1
 
                 textoNumero = linea[pos_primer_numero:pos_segundo_numero]
+                
 
-                if baseSolicitada == 16:
-                    hexadecimal(caracter, textoNumero, valor, mensaje)
-                elif baseSolicitada == 10:
-                    decimal(caracter, textoNumero, valor, mensaje)
-                elif baseSolicitada == 8:
-                    octal(caracter, textoNumero, valor, mensaje)
-                elif baseSolicitada == 2:
-                    binario(caracter, textoNumero, valor, mensaje)
+                if baseSolicitada == "16":
+                    valor, mensaje = hexadecimal(caracter, textoNumero, valor, mensaje)
+                    print(mensaje)
+                elif baseSolicitada == "10":
+                    valor, mensaje = decimal(caracter, textoNumero, valor, mensaje)
+                elif baseSolicitada == "8":
+                    valor, mensaje = octal(caracter, textoNumero, valor, mensaje)
+                elif baseSolicitada == "2":
+                    valor, mensaje = binario(caracter, textoNumero, valor, mensaje)
 
                 """if (len(textoNumero) > 0):
                     print(f"caracter: {caracter}")
@@ -108,4 +109,4 @@ def leerArchivo():
     archivo.close()
 
 
-leerArchivo()
+

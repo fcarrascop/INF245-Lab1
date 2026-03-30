@@ -2,6 +2,7 @@
 from utils.strings import partirString
 from utils.bases import bases, hexABinario
 from utils.bits import bits
+from utils.printValores import printValores
 
 def leerBinario(string: str) -> int:
 	arreglo: list[str] = list(string)
@@ -29,8 +30,11 @@ def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
         for c in texto:
             final += bits(3, c)
+        
+        printValores(valor, mensaje, tipo, texto, final, 2)
 
-        return final
+        return None
+    
     elif tipo == "#":
     	# Decimal
     	# Método de Horner
@@ -42,7 +46,9 @@ def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
             final += "01"[resto]
             numero //= 2
 
-        return final[::-1]
+        printValores(valor, mensaje, tipo, texto, final[::-1], 2)
+
+        return None
 
     elif tipo == "!":
         # Hexadecimal
@@ -54,6 +60,8 @@ def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
         for digito in textoHex:
             resultado += hexABinario[digito]
 
-        return resultado
+        printValores(valor, mensaje, tipo, texto, resultado, 2)
+
+        return None
 
 # print(binario("!", "AF3"))

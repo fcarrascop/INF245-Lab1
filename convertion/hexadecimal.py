@@ -35,18 +35,19 @@ def leerBinAHexa(binario: list) -> str:
 	return numFinal
 
 
-def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
-
+def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str):
 		if tipo == "!":
-			return texto
+			return valor, mensaje
 		elif tipo == "*":
 			# Binario
 
 			numFinal = leerBinAHexa(partirString(texto, 4))
 
-			printValores(valor, mensaje, tipo, texto, numFinal, 16)
+			mensaje = mensaje + printValores(valor, tipo, texto, numFinal, 16)
 
-			return None
+			valor = valor + 1
+
+			return valor, mensaje
 
 		elif tipo == "&":
 			# Octal
@@ -55,9 +56,11 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 			numeroNuevo = numeroAbinario(texto, 3)
 			numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
 
-			printValores(valor, mensaje, tipo, texto, numFinal, 16)
+			mensaje = mensaje + printValores(valor, tipo, texto, numFinal, 16)
 
-			return numFinal
+			valor = valor + 1
+
+			return valor, mensaje
 
 		elif tipo == "#":
 			# Decimal
@@ -66,10 +69,13 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
 			numFinal = pasarAHexa(int(texto))
 
-			printValores(valor, mensaje, tipo, texto, str(numFinal), 16)
+			mensaje = mensaje + printValores(valor, tipo, texto, str(numFinal), 16)
 
-			return None
+			valor = valor + 1
+
+			return valor, mensaje
 		else:
 			return ""
 
 # Yo (felipe) estuve modificando algunas cosas por acá, por lo que si algo falla, toda la culpa a mi.
+

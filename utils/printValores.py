@@ -7,13 +7,9 @@ valores = {
 	"!": "Hexadecimal",
 }
 
-def printValores(index: int, mensaje: str, signo: str, inicial: str, final: str, base: int) -> list:
+def printValores(index: int, signo: str, inicial: str, final: str, base: int) -> str:
     print("Valor " + str(index) + ": " + final + " (Original: " + valores[signo] + " " + signo + inicial+ ")")
-    
-    index += 1
 
-    mensaje += numeroAAscii(final, base)
-    print(numeroAAscii(final, base))
-    print(mensaje)
+    nuevo = numeroAAscii(final, base)
 
-    return None
+    return nuevo

@@ -15,7 +15,9 @@ def decimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
         for x in texto:
             suma = suma * 2 + bases[x]
 
-        return str(suma)
+        printValores(valor, mensaje, tipo, texto, str(suma), 10)
+
+        return None
 
         # return final
 
@@ -29,16 +31,15 @@ def decimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
         final = str(suma)
 
-        print(final)
+        printValores(valor, mensaje, tipo, texto, final, 10)
 
-        return final
+        return None
 
     elif tipo == "!":
     	# Hexadecimal
     	# División repetida
 
-        print(MetodoHorner(texto, 16))
-        printValores(1, "", tipo, texto, str(MetodoHorner(texto, 16)), 10)
+        printValores(valor, mensaje, tipo, texto, str(MetodoHorner(texto, 16)), 10)
 
         return None
     else:
