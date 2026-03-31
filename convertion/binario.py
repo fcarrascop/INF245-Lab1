@@ -21,7 +21,13 @@ def leerBinario(string: str) -> int:
 def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
     if tipo == "*":
-        return texto
+
+        mensaje = mensaje + printValores(valor, tipo, texto, texto, 2)
+			
+        valor = valor + 1
+
+        return valor, mensaje
+    
     elif tipo == "&":
 		# Octal
 		# 3 bit grouping
@@ -31,9 +37,11 @@ def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
         for c in texto:
             final += bits(3, c)
         
-        printValores(valor, mensaje, tipo, texto, final, 2)
+        mensaje = mensaje + printValores(valor, tipo, texto, final, 2)
 
-        return None
+        valor = valor + 1
+
+        return valor, mensaje
     
     elif tipo == "#":
     	# Decimal
@@ -46,9 +54,11 @@ def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
             final += "01"[resto]
             numero //= 2
 
-        printValores(valor, mensaje, tipo, texto, final[::-1], 2)
+        mensaje = mensaje + printValores(valor, tipo, texto, final[::-1], 2)
 
-        return None
+        valor = valor + 1
+
+        return valor, mensaje
 
     elif tipo == "!":
         # Hexadecimal
@@ -60,8 +70,10 @@ def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
         for digito in textoHex:
             resultado += hexABinario[digito]
 
-        printValores(valor, mensaje, tipo, texto, resultado, 2)
+        mensaje = mensaje + printValores(valor, tipo, texto, resultado, 2)
 
-        return None
+        valor = valor + 1
 
-# print(binario("!", "AF3"))
+        return valor, mensaje
+
+

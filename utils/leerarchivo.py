@@ -52,11 +52,10 @@ def leerArchivo():
 
     archivo = open(archivo, "r")
 
-    print("""[+] Procesando archivo: notas_dm
-    [!] Filtrando ruido místico (valores fuera de rango ASCII)...\n""")
+    print("[+] Procesando archivo: notas_dm")
+    print("[!] Filtrando ruido místico (valores fuera de rango ASCII)...")
     print("LISTA DE VALORES EXTRAÍDOS (Base "+ baseSolicitada + "):")
     print("--------------------------------------------------")
-
 
     while True:
         linea = archivo.readline()
@@ -71,33 +70,34 @@ def leerArchivo():
             if caracter in "*&#!" and i + 1 < len(linea):
                 caracteresAceptados = aceptados[caracter]
                 pos_primer_numero = i + 1
-                pos_segundo_numero = pos_primer_numero
+                if linea[pos_primer_numero] in "0123456789":
 
-                while pos_segundo_numero < len(linea) and linea[pos_segundo_numero] in caracteresAceptados:
-                    pos_segundo_numero += 1
+                    pos_segundo_numero = pos_primer_numero
 
-                textoNumero = linea[pos_primer_numero:pos_segundo_numero]
-                
+                    while pos_segundo_numero < len(linea) and linea[pos_segundo_numero] in caracteresAceptados:
+                        pos_segundo_numero += 1
 
-                if baseSolicitada == "16":
-                    valor, mensaje = hexadecimal(caracter, textoNumero, valor, mensaje)
-                    print(mensaje)
-                elif baseSolicitada == "10":
-                    valor, mensaje = decimal(caracter, textoNumero, valor, mensaje)
-                elif baseSolicitada == "8":
-                    valor, mensaje = octal(caracter, textoNumero, valor, mensaje)
-                elif baseSolicitada == "2":
-                    valor, mensaje = binario(caracter, textoNumero, valor, mensaje)
+                    textoNumero = linea[pos_primer_numero:pos_segundo_numero]
+                    
 
-                """if (len(textoNumero) > 0):
-                    print(f"caracter: {caracter}")
-                    transformado = transformaciones[caracter](baseSigno[baseSolicitada], textoNumero)
+                    if baseSolicitada == "16":
+                        valor, mensaje = hexadecimal(caracter, textoNumero, valor, mensaje)
+                    elif baseSolicitada == "10":
+                        valor, mensaje = decimal(caracter, textoNumero, valor, mensaje)
+                    elif baseSolicitada == "8":
+                        valor, mensaje = octal(caracter, textoNumero, valor, mensaje)
+                    elif baseSolicitada == "2":
+                        valor, mensaje = binario(caracter, textoNumero, valor, mensaje)
 
-                    print(caracter)
-                    print(textoNumero)
-                    print(transformado)
+                    """if (len(textoNumero) > 0):
+                        print(f"caracter: {caracter}")
+                        transformado = transformaciones[caracter](baseSigno[baseSolicitada], textoNumero)
 
-                    valor, mensaje = printValores(valor, mensaje, caracter, textoNumero, transformado)"""
+                        print(caracter)
+                        print(textoNumero)
+                        print(transformado)
+
+                        valor, mensaje = printValores(valor, mensaje, caracter, textoNumero, transformado)"""
             i = i + 1
         break
 

@@ -6,7 +6,13 @@ from utils.printValores import printValores
 def decimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
     if tipo == "#":
-        return texto
+
+        mensaje = mensaje + printValores(valor, tipo, texto, texto, 10)
+			
+        valor = valor + 1
+
+        return valor, mensaje
+    
     elif tipo == "*":
     	# Binario
     	# División repetida
@@ -15,11 +21,11 @@ def decimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
         for x in texto:
             suma = suma * 2 + bases[x]
 
-        printValores(valor, mensaje, tipo, texto, str(suma), 10)
+        mensaje = mensaje + printValores(valor, tipo, texto, str(suma).lstrip("0"), 10)
+			
+        valor = valor + 1
 
-        return None
-
-        # return final
+        return valor, mensaje
 
     elif tipo == "&":
     	# Octal
@@ -31,18 +37,21 @@ def decimal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
         final = str(suma)
 
-        printValores(valor, mensaje, tipo, texto, final, 10)
+        mensaje = mensaje + printValores(valor, tipo, texto, final.lstrip("0"), 10)
+			
+        valor = valor + 1
 
-        return None
+        return valor, mensaje
 
     elif tipo == "!":
     	# Hexadecimal
     	# División repetida
 
-        printValores(valor, mensaje, tipo, texto, str(MetodoHorner(texto, 16)), 10)
+        mensaje = mensaje + printValores(valor, tipo, texto, str(MetodoHorner(texto, 16)).lstrip("0"), 10)
+			
+        valor = valor + 1
 
-        return None
+        return valor, mensaje
     else:
     	return None
 
-# print(decimal("!", "41"))

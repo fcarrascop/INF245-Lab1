@@ -1,4 +1,4 @@
-from utils.strings import numeroAAscii
+from utils.strings import numeroAAscii, MetodoHorner
 
 valores = {
 	"*": "Binario",
@@ -8,8 +8,12 @@ valores = {
 }
 
 def printValores(index: int, signo: str, inicial: str, final: str, base: int) -> str:
-    print("Valor " + str(index) + ": " + final + " (Original: " + valores[signo] + " " + signo + inicial+ ")")
+    
+	if MetodoHorner(final, base) <= 126 and 32 <= MetodoHorner(final, base):
+		print("Valor " + str(index) + ": " + final + " (Original: " + valores[signo] + " " + signo + inicial+ ")")
 
-    nuevo = numeroAAscii(final, base)
+		nuevo = numeroAAscii(final, base)
 
-    return nuevo
+		return nuevo
+
+	return ""

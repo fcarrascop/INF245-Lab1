@@ -28,7 +28,6 @@ def hexaString(numero: int) -> str:
 
 def leerBinAHexa(binario: list) -> str:
 	numFinal = ""
-	print(binario)
 	for grupos in binario:
 		numFinal += binarioAHex[grupos]
 
@@ -37,13 +36,19 @@ def leerBinAHexa(binario: list) -> str:
 
 def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str):
 		if tipo == "!":
+
+			mensaje = mensaje + printValores(valor, tipo, texto, texto, 16)
+
+			valor = valor + 1
+
 			return valor, mensaje
+		
 		elif tipo == "*":
 			# Binario
 
 			numFinal = leerBinAHexa(partirString(texto, 4))
 
-			mensaje = mensaje + printValores(valor, tipo, texto, numFinal, 16)
+			mensaje = mensaje + printValores(valor, tipo, texto, numFinal.lstrip("0"), 16)
 
 			valor = valor + 1
 
@@ -56,7 +61,7 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str):
 			numeroNuevo = numeroAbinario(texto, 3)
 			numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
 
-			mensaje = mensaje + printValores(valor, tipo, texto, numFinal, 16)
+			mensaje = mensaje + printValores(valor, tipo, texto, numFinal.lstrip("0"), 16)
 
 			valor = valor + 1
 
@@ -69,7 +74,7 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str):
 
 			numFinal = pasarAHexa(int(texto))
 
-			mensaje = mensaje + printValores(valor, tipo, texto, str(numFinal), 16)
+			mensaje = mensaje + printValores(valor, tipo, texto, str(numFinal).lstrip("0"), 16)
 
 			valor = valor + 1
 

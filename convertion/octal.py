@@ -1,9 +1,16 @@
-from utils.bits import bits
-from utils.bases import bases
+from utils.bits import bits, numeroAbinario
+from utils.bases import bases, binarioAOctal
 from utils.strings import partirString
 from utils.strings import MetodoHorner
 from convertion.binario import leerBinario, binario
 from utils.printValores import printValores
+
+def leerBinAOctal(binario: list) -> str:
+	numFinal = ""
+	for grupos in binario:
+		numFinal += binarioAOctal[grupos]
+
+	return numFinal
 
 def leerOctal(numero: int) -> int:
     resultado = 0
@@ -20,7 +27,13 @@ def leerOctal(numero: int) -> int:
 
 def octal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
     if tipo == "&":
-        return texto
+
+        mensaje = mensaje + printValores(valor, tipo, texto, texto, 8)
+
+        valor = valor + 1
+
+        return valor, mensaje
+
     elif tipo == "*":
         # Binario
         # Agrupación de bits
@@ -29,9 +42,11 @@ def octal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
         final = [ "01234567"[leerBinario(x)] for x in lista]
         caracter = "".join(final)
 
-        printValores(valor, mensaje, tipo, texto, caracter, 8)
+        mensaje = mensaje + printValores(valor, tipo, texto, caracter.lstrip("0"), 8)
 
-        return None
+        valor = valor + 1
+
+        return valor, mensaje
 
     elif tipo == "#":
         # Decimal
@@ -45,18 +60,21 @@ def octal(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
             final += "01234567"[resto]
             numero //= 8
 
-        printValores(valor, mensaje, tipo, texto, final[::-1], 8)
+        mensaje = mensaje + printValores(valor, tipo, texto, final[::-1].lstrip("0"), 8)
 
-        return None
+        valor = valor + 1
+
+        return valor, mensaje
 
     elif tipo == "!":
 
-        bits = binario("!", texto)
-        final = [ str(leerBinario(x)) for x in partirString(bits, 3)]
-        caracter = "".join(final)
+        numeroNuevo = numeroAbinario(texto, 4)
+        numFinal = leerBinAOctal(partirString(numeroNuevo, 3))
 
-        printValores(valor, mensaje, tipo, texto, caracter, 8)
+        mensaje = mensaje + printValores(valor, tipo, texto, numFinal.lstrip("0"), 8)
 
-        return None
+        valor = valor + 1
+
+        return valor, mensaje
     else:
         return None
