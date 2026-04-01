@@ -21,10 +21,10 @@ baseSigno = {
 }
 
 transformaciones = {
-    "*": binario,
-	"&": octal,
-	"#": decimal,
-	"!": hexadecimal
+    "2": binario,
+	"8": octal,
+	"10": decimal,
+	"16": hexadecimal
 }
 
 
@@ -78,26 +78,12 @@ def leerArchivo():
                         pos_segundo_numero += 1
 
                     textoNumero = linea[pos_primer_numero:pos_segundo_numero]
-                    
 
-                    if baseSolicitada == "16":
-                        valor, mensaje = hexadecimal(caracter, textoNumero, valor, mensaje)
-                    elif baseSolicitada == "10":
-                        valor, mensaje = decimal(caracter, textoNumero, valor, mensaje)
-                    elif baseSolicitada == "8":
-                        valor, mensaje = octal(caracter, textoNumero, valor, mensaje)
-                    elif baseSolicitada == "2":
-                        valor, mensaje = binario(caracter, textoNumero, valor, mensaje)
+                    valorFinal = transformaciones[baseSolicitada](caracter, textoNumero)
 
-                    """if (len(textoNumero) > 0):
-                        print(f"caracter: {caracter}")
-                        transformado = transformaciones[caracter](baseSigno[baseSolicitada], textoNumero)
+                    mensaje += printValores(valor, caracter, textoNumero, valorFinal.lstrip("0"), int(baseSolicitada))
 
-                        print(caracter)
-                        print(textoNumero)
-                        print(transformado)
-
-                        valor, mensaje = printValores(valor, mensaje, caracter, textoNumero, transformado)"""
+                    valor += 1
             i = i + 1
         break
 
@@ -107,6 +93,3 @@ def leerArchivo():
     print("[Proceso finalizado con éxito]")
 
     archivo.close()
-
-
-

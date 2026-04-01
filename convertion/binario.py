@@ -1,8 +1,6 @@
 # from typing import
-from utils.strings import partirString
-from utils.bases import bases, hexABinario
+from utils.bases import hexABinario
 from utils.bits import bits
-from utils.printValores import printValores
 
 def leerBinario(string: str) -> int:
 	arreglo: list[str] = list(string)
@@ -18,16 +16,11 @@ def leerBinario(string: str) -> int:
 	return suma
 
 
-def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
+def binario(tipo: str, texto: str) -> str:
 
     if tipo == "*":
+        return texto
 
-        mensaje = mensaje + printValores(valor, tipo, texto, texto, 2)
-			
-        valor = valor + 1
-
-        return valor, mensaje
-    
     elif tipo == "&":
 		# Octal
 		# 3 bit grouping
@@ -36,13 +29,9 @@ def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
 
         for c in texto:
             final += bits(3, c)
-        
-        mensaje = mensaje + printValores(valor, tipo, texto, final, 2)
 
-        valor = valor + 1
+        return final
 
-        return valor, mensaje
-    
     elif tipo == "#":
     	# Decimal
     	# Método de Horner
@@ -54,11 +43,7 @@ def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
             final += "01"[resto]
             numero //= 2
 
-        mensaje = mensaje + printValores(valor, tipo, texto, final[::-1], 2)
-
-        valor = valor + 1
-
-        return valor, mensaje
+        return final[::-1]
 
     elif tipo == "!":
         # Hexadecimal
@@ -70,10 +55,6 @@ def binario(tipo: str, texto: str, valor: int, mensaje: str) -> str | None:
         for digito in textoHex:
             resultado += hexABinario[digito]
 
-        mensaje = mensaje + printValores(valor, tipo, texto, resultado, 2)
-
-        valor = valor + 1
-
-        return valor, mensaje
-
-
+        return resultado
+    else:
+        return ""

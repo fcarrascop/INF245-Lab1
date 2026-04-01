@@ -1,7 +1,6 @@
 from utils.bases import basesHexa, binarioAHex
 from utils.bits import numeroAbinario
-from utils.strings import partirString, MetodoHorner
-from utils.printValores import printValores
+from utils.strings import partirString
 
 def pasarAHexa(numero: int) -> str:
     hexa = ""
@@ -34,25 +33,15 @@ def leerBinAHexa(binario: list) -> str:
 	return numFinal
 
 
-def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str):
+def hexadecimal(tipo: str, texto: str) -> str:
 		if tipo == "!":
+			return texto
 
-			mensaje = mensaje + printValores(valor, tipo, texto, texto, 16)
-
-			valor = valor + 1
-
-			return valor, mensaje
-		
 		elif tipo == "*":
 			# Binario
-
 			numFinal = leerBinAHexa(partirString(texto, 4))
 
-			mensaje = mensaje + printValores(valor, tipo, texto, numFinal.lstrip("0"), 16)
-
-			valor = valor + 1
-
-			return valor, mensaje
+			return numFinal
 
 		elif tipo == "&":
 			# Octal
@@ -61,11 +50,7 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str):
 			numeroNuevo = numeroAbinario(texto, 3)
 			numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
 
-			mensaje = mensaje + printValores(valor, tipo, texto, numFinal.lstrip("0"), 16)
-
-			valor = valor + 1
-
-			return valor, mensaje
+			return numFinal
 
 		elif tipo == "#":
 			# Decimal
@@ -74,13 +59,8 @@ def hexadecimal(tipo: str, texto: str, valor: int, mensaje: str):
 
 			numFinal = pasarAHexa(int(texto))
 
-			mensaje = mensaje + printValores(valor, tipo, texto, str(numFinal).lstrip("0"), 16)
-
-			valor = valor + 1
-
-			return valor, mensaje
+			return numFinal
 		else:
 			return ""
 
 # Yo (felipe) estuve modificando algunas cosas por acá, por lo que si algo falla, toda la culpa a mi.
-
