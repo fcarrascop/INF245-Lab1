@@ -1,0 +1,9 @@
+__pycache__/
+*.pyc
+.DS_Store
+Archivos_prueba.zip
+notas_dm_base2.txt
+notas_dm_base8.txt
+notas_dm_base10.txt
+notas_dm_base16.txt
+resultados_esperados.txt
