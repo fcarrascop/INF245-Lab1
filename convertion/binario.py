@@ -3,6 +3,23 @@ from utils.bases import hexABinario
 from utils.bits import bits
 
 def leerBinario(string: str) -> int:
+	"""
+	Convierte un numero en base 2 a decimal.
+
+	Args:
+		string (str): Cadena con digitos binarios (0 y 1).
+
+	Returns:
+		int:
+			Valor decimal equivalente.
+
+	Raises:
+		ValueError: Si la cadena contiene caracteres no binarios.
+
+	Example:
+		>>> leerBinario("1010")
+		10
+	"""
 	arreglo: list[str] = list(string)
 	arreglo.reverse()
 
@@ -17,6 +34,25 @@ def leerBinario(string: str) -> int:
 
 
 def binario(tipo: str, texto: str) -> str:
+    """
+    Convierte un numero desde una base a binario.
+
+    Args:
+    	tipo (str): Prefijo de base de entrada (*, &, #, !).
+    	texto (str): Cadena numerica en la base indicada por el prefijo.
+
+    Returns:
+    	str:
+    		Cadena con el numero convertido a binario.
+
+    Raises:
+    	KeyError: Si hay un digito hexadecimal no valido.
+    	ValueError: Si el texto no es numerico cuando tipo es #.
+
+    Example:
+    	>>> binario("#", "10")
+    	"1010"
+    """
 
     if tipo == "*":
         return texto

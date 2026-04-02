@@ -3,6 +3,20 @@ from utils.bits import numeroAbinario
 from utils.strings import partirString
 
 def pasarAHexa(numero: int) -> str:
+    """
+    Convierte un numero decimal a hexadecimal.
+
+    Args:
+    	numero (int): Valor decimal.
+
+    Returns:
+    	str:
+    		Cadena hexadecimal equivalente.
+
+    Example:
+    	>>> pasarAHexa(26)
+    	"1A"
+    """
     hexa = ""
 
     while numero > 0:
@@ -11,21 +25,24 @@ def pasarAHexa(numero: int) -> str:
 
     return(hexa)
 
-def hexaString(numero: int) -> str:
-	if (numero == 0):
-		return "0"
-
-	texto = []
-	while numero > 0:
-		digito = numero % 10
-		texto.append(basesHexa[digito])
-		numero //= 10
-
-	texto.reverse()
-	final = "".join(texto)
-	return final
-
 def leerBinAHexa(binario: list) -> str:
+	"""
+	Convierte una lista de grupos binarios a hexadecimal.
+
+	Args:
+		binario (list): Lista de strings con grupos de 4 bits.
+
+	Returns:
+		str:
+			Cadena hexadecimal equivalente.
+
+	Raises:
+		KeyError: Si algun grupo no existe en el mapeo.
+
+	Example:
+		>>> leerBinAHexa(["0001", "1010"])
+		"1A"
+	"""
 	numFinal = ""
 	for grupos in binario:
 		numFinal += binarioAHex[grupos]
@@ -34,33 +51,52 @@ def leerBinAHexa(binario: list) -> str:
 
 
 def hexadecimal(tipo: str, texto: str) -> str:
-		if tipo == "!":
-			return texto
+    """
+    Convierte un numero desde una base a hexadecimal.
 
-		elif tipo == "*":
-			# Binario
-			numFinal = leerBinAHexa(partirString(texto, 4))
+    Args:
+    	tipo (str): Prefijo de base de entrada (*, &, #, !).
+    	texto (str): Cadena numerica en la base indicada por el prefijo.
 
-			return numFinal
+    Returns:
+    	str:
+    		Cadena con el numero convertido a hexadecimal.
 
-		elif tipo == "&":
-			# Octal
-			# Conversión de base pasando por decimal
+    Raises:
+    	KeyError: Si hay un digito no valido en el texto.
+    	ValueError: Si el texto no es numerico cuando tipo es #.
 
-			numeroNuevo = numeroAbinario(texto, 3)
-			numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
+    Example:
+    	>>> hexadecimal("#", "26")
+    	"1A"
+    """
+    if tipo == "!":
+        return texto
 
-			return numFinal
+    elif tipo == "*":
+    	# Binario
+        numFinal = leerBinAHexa(partirString(texto, 4))
 
-		elif tipo == "#":
-			# Decimal
-			# ~Expanción posicional~
-			# Variación Método de Horner
+        return numFinal
 
-			numFinal = pasarAHexa(int(texto))
+    elif tipo == "&":
+    	# Octal
+    	# Conversión de base pasando por decimal
 
-			return numFinal
-		else:
-			return ""
+        numeroNuevo = numeroAbinario(texto, 3)
+        numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
+
+        return numFinal
+
+    elif tipo == "#":
+    	# Decimal
+    	# ~Expanción posicional~
+    	# Variación Método de Horner
+
+        numFinal = pasarAHexa(int(texto))
+
+        return numFinal
+    else:
+    	return ""
 
 # Yo (felipe) estuve modificando algunas cosas por acá, por lo que si algo falla, toda la culpa a mi.

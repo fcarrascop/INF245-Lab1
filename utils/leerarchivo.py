@@ -4,20 +4,11 @@ from convertion.decimal import decimal
 from convertion.hexadecimal import hexadecimal
 from utils.printValores import printValores
 
-
-
 aceptados = {
 	"*": "01",
 	"&": "01234567",
 	"#": "0123456789",
 	"!": "0123456789abcdefABCDEF"
-}
-
-baseSigno = {
-	"2": "*",
-	"8": "&",
-	"10": "#",
-	"16": "!"
 }
 
 transformaciones = {
@@ -27,22 +18,31 @@ transformaciones = {
 	"16": hexadecimal
 }
 
-
-# archivo = "./Archivos_prueba/Encriptados/prueba_1.txt"
-archivo = "notas_dm.txt"
-# archivo = "notas_dm_base2.txt"
-# archivo = "notas_dm_base8.txt"
-# archivo = "notas_dm_base10.txt"
-# archivo = "notas_dm_base16.txt"
-
 def leerArchivo():
+    """
+    Lee el archivo de notas, convierte los valores y muestra el resultado.
+
+    Args:
+       	No recibe argumentos. El archivo a leer se define en el modulo.
+
+    Returns:
+       	None
+
+    Raises:
+       	FileNotFoundError: Si no existe el archivo de entrada.
+
+    Example:
+       	>>> leerArchivo()
+       	None
+    """
+
     global valor, mensaje, archivo
 
     valor = 1
     mensaje = ""
     archivo = "notas_dm.txt"
 
-    print("-- DECODIFICADOR DE NOTAS --\n")
+    print("--- DECODIFICADOR DE NOTAS ---")
     baseSolicitada = input("Ingrese la base en la que desea visualizar los datos (2, 8, 10, 16): ")
 
     if baseSolicitada not in ["2", "8", "10", "16"]:
@@ -52,7 +52,7 @@ def leerArchivo():
 
     archivo = open(archivo, "r")
 
-    print("[+] Procesando archivo: notas_dm")
+    print(f"[+] Procesando archivo: {archivo}...")
     print("[!] Filtrando ruido místico (valores fuera de rango ASCII)...")
     print("LISTA DE VALORES EXTRAÍDOS (Base "+ baseSolicitada + "):")
     print("--------------------------------------------------")
@@ -88,8 +88,8 @@ def leerArchivo():
         break
 
     print("--------------------------------------------------")
-    print("MENSAJE DECODIFICADO")
-    print(f"{mensaje}\n")
-    print("[Proceso finalizado con éxito]")
+    print("MENSAJE DECODIFICADO:")
+    print(f"\"{mensaje}\"")
+    print("[Proceso finalizado con exito]")
 
     archivo.close()
