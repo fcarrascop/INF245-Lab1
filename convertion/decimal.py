@@ -26,24 +26,14 @@ def decimal(tipo: str, texto: str) -> str:
     elif tipo == "*":
     	# Binario
     	# División repetida
-        suma = 0
 
-        for x in texto:
-            suma = suma * 2 + bases[x]
-
-        return str(suma)
+        return str(MetodoHorner(texto, 2))
 
     elif tipo == "&":
     	# Octal
     	# División repetida
-        suma = 0
-        lista = [ bases[x] for x in texto]
-        for x in lista:
-            suma = suma * 8 + x
 
-        final = str(suma)
-
-        return final
+        return str(MetodoHorner(texto, 8))
 
     elif tipo == "!":
     	# Hexadecimal

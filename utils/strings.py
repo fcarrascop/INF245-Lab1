@@ -40,7 +40,7 @@ def numeroAAscii(numero: str, base: int) -> str:
 	valor = MetodoHorner(numero, base)
 
 	if valor <= 126 and 32 <= valor:
-		letraMensaje = ascii[valor]
+		letraMensaje = chr(valor)
 		return letraMensaje
 
 	return ""
@@ -68,6 +68,12 @@ def MetodoHorner(numero: str, base: int) -> int:
 	valor = 0
 
 	for digito in numero:
-		valor = valor * base + bases[digito]
+
+		if '0' <= digito <= '9':
+			n = ord(digito) - ord('0')
+		else:
+			n = ord(digito) - ord('A') + 10
+
+		valor = valor * base + n
 		
 	return valor

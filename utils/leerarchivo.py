@@ -69,10 +69,9 @@ def leerArchivo():
 
             if caracter in "*&#!" and i + 1 < len(linea):
                 caracteresAceptados = aceptados[caracter]
-                print(caracteresAceptados)
                 pos_primer_numero = i + 1
                 if linea[pos_primer_numero] in caracteresAceptados:
-                    print("caracter aceptado")
+                    
                     pos_segundo_numero = pos_primer_numero
 
                     while pos_segundo_numero < len(linea) and linea[pos_segundo_numero] in caracteresAceptados:

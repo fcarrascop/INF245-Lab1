@@ -1,6 +1,6 @@
 from utils.bases import basesHexa, binarioAHex
 from utils.bits import numeroAbinario
-from utils.strings import partirString
+from utils.strings import partirString, MetodoHorner
 
 def pasarAHexa(numero: int) -> str:
     """
@@ -17,13 +17,22 @@ def pasarAHexa(numero: int) -> str:
     	>>> pasarAHexa(26)
     	"1A"
     """
-    hexa = ""
+    if numero == 0:
+        return "0"
+
+    resultado = ""
 
     while numero > 0:
-        hexa = basesHexa[numero % 16] + hexa
-        numero = numero // 16
+        resto = numero % 16
 
-    return(hexa)
+        if resto < 10:
+            resultado = chr(resto + ord('0')) + resultado
+        else:
+            resultado = chr(resto - 10 + ord('A')) + resultado
+
+        numero //= 16
+
+    return resultado
 
 def leerBinAHexa(binario: list) -> str:
 	"""
@@ -44,8 +53,15 @@ def leerBinAHexa(binario: list) -> str:
 		"1A"
 	"""
 	numFinal = ""
-	for grupos in binario:
-		numFinal += binarioAHex[grupos]
+
+	for grupo in binario:
+        
+		valor = MetodoHorner(grupo, 2)
+
+		if valor < 10:
+			numFinal += chr(valor + ord('0'))
+		else:
+			numFinal += chr(valor - 10 + ord('A'))
 
 	return numFinal
 

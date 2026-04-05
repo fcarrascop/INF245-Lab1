@@ -2,6 +2,7 @@ from utils.bits import numeroAbinario
 from utils.bases import binarioAOctal
 from utils.strings import partirString
 from convertion.binario import leerBinario
+from utils.strings import MetodoHorner
 
 def leerBinAOctal(binario: list) -> str:
     """
@@ -23,12 +24,14 @@ def leerBinAOctal(binario: list) -> str:
     """
 
     numFinal = ""
-    for grupos in binario:
-        numFinal += binarioAOctal[grupos]
+
+    for grupo in binario:
+        valor = MetodoHorner(grupo, 2)
+        numFinal += chr(valor + ord('0'))
 
     return numFinal
 
-def leerOctal(numero: int) -> int:
+def pasarAOctal(numero: int) -> int:
     """
     Convierte un numero en base 8 a decimal.
 
@@ -46,16 +49,16 @@ def leerOctal(numero: int) -> int:
     	>>> leerOctal(17)
     	15
     """
-    resultado = 0
-    potencia = 0
+    if numero == 0:
+        return "0"
+
+    resultado = ""
 
     while numero > 0:
+        resto = numero % 8
+        resultado = chr(resto + ord('0')) + resultado
+        numero //= 8
 
-        digito = numero % 10
-        resultado = resultado + digito * (8 ** potencia)
-
-        numero = numero // 10
-        potencia = potencia + 1
     return resultado
 
 def octal(tipo: str, texto: str) -> str:
@@ -85,24 +88,17 @@ def octal(tipo: str, texto: str) -> str:
         # Binario
         # Agrupación de bits
 
-        lista = partirString(texto, 3)
-        final = [ "01234567"[leerBinario(x)] for x in lista]
-        caracter = "".join(final)
+        numFinal = leerBinAOctal(partirString(texto, 3))
 
-        return caracter
+        return numFinal
+    
     elif tipo == "#":
         # Decimal
         # Variación Método de Horner
 
-        numero = int(texto)
-        final = ""
+        numFinal = pasarAOctal(int(texto))
 
-        while numero > 0:
-            resto = numero % 8
-            final += "01234567"[resto]
-            numero //= 8
-
-        return final[::-1]
+        return numFinal
 
     elif tipo == "!":
 

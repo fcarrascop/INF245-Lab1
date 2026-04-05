@@ -28,34 +28,37 @@ def bits(cantidadBits: int, numero: str) -> str:
 	return final[::-1]
 
 def numeroAbinario(numero: str, cantidadBits: int) -> str:
-    """
-    Convierte una cadena numerica a binario agrupando cada digito.
+	"""
+	Convierte una cadena numerica a binario agrupando cada digito.
 
-    Args:
-    	numero (str): Cadena numerica en la base indicada por el largo.
-    	cantidadBits (int): Bits por digito (3 para octal, 4 para hexa).
+	Args:
+		numero (str): Cadena numerica en la base indicada por el largo.
+		cantidadBits (int): Bits por digito (3 para octal, 4 para hexa).
 
-    Returns:
-    	str: Cadena binaria concatenada.
+	Returns:
+		str: Cadena binaria concatenada.
 
-    Raises:
-    	KeyError: Si hay un digito no valido.
+	Raises:
+		KeyError: Si hay un digito no valido.
 
-    Example:
-    	>>> numeroAbinario("17", 3)
-    	"001111"
-    """
-    resultado = ""
+	Example:
+		>>> numeroAbinario("17", 3)
+		"001111"
+	"""
+	resultado = ""
 
-    for digito in numero:
-        n = bases[digito]
+	for digito in numero:
+		if '0' <= digito <= '9':
+			n = ord(digito) - ord('0')
+		else:
+			n = ord(digito) - ord('A') + 10
 
-        bits = ""
-        for _ in range(cantidadBits):
-            resto = n % 2
-            bits += "1" if resto == 1 else "0"
-            n //= 2
+		bits = ""
+		for _ in range(cantidadBits):
+			resto = n % 2
+			bits += "1" if resto == 1 else "0"
+			n //= 2
 
-        resultado += bits[::-1]
+		resultado += bits[::-1]
 
-    return resultado
+	return resultado

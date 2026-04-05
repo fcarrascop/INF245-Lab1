@@ -1,6 +1,7 @@
 # from typing import
 from utils.bases import hexABinario
-from utils.bits import bits
+from utils.bits import numeroAbinario
+from utils.strings import MetodoHorner
 
 def leerBinario(string: str) -> int:
 	"""
@@ -34,63 +35,57 @@ def leerBinario(string: str) -> int:
 
 
 def binario(tipo: str, texto: str) -> str:
-    """
-    Convierte un numero desde una base a binario.
+	"""
+	Convierte un numero desde una base a binario.
 
-    Args:
-    	tipo (str): Prefijo de base de entrada (*, &, #, !).
-    	texto (str): Cadena numerica en la base indicada por el prefijo.
+	Args:
+		tipo (str): Prefijo de base de entrada (*, &, #, !).
+		texto (str): Cadena numerica en la base indicada por el prefijo.
 
-    Returns:
-    	str:
-    		Cadena con el numero convertido a binario.
+	Returns:
+		str:
+			Cadena con el numero convertido a binario.
 
-    Raises:
-    	KeyError: Si hay un digito hexadecimal no valido.
-    	ValueError: Si el texto no es numerico cuando tipo es #.
+	Raises:
+		KeyError: Si hay un digito hexadecimal no valido.
+		ValueError: Si el texto no es numerico cuando tipo es #.
 
-    Example:
-    	>>> binario("#", "10")
-    	"1010"
-    """
+	Example:
+		>>> binario("#", "10")
+		"1010"
+	"""
 
-    if tipo == "*":
-        return texto
+	if tipo == "*":
+		return texto
 
-    elif tipo == "&":
+	elif tipo == "&":
 		# Octal
 		# 3 bit grouping
 
-        final = ""
+		return numeroAbinario(texto, 3)
 
-        for c in texto:
-            final += bits(3, c)
+	elif tipo == "#":
+		# Decimal
+		# Método de Horner
+		numero = int(texto)
+		final = ""
 
-        return final
+		while numero > 0:
+			resto = numero % 2
+			if resto == 1:
+				final += "1"
+			else:
+				final += "0"
+			
+			numero //= 2
 
-    elif tipo == "#":
-    	# Decimal
-    	# Método de Horner
-        numero = int(texto)
-        final = ""
+		return final[::-1]
 
-        while numero > 0:
-            resto = numero % 2
-            final += "01"[resto]
-            numero //= 2
-
-        return final[::-1]
-
-    elif tipo == "!":
-        # Hexadecimal
-        # 4 bit grouping
-        resultado = ""
-
-        textoHex = texto.upper()
-
-        for digito in textoHex:
-            resultado += hexABinario[digito]
-
-        return resultado
-    else:
-        return ""
+	elif tipo == "!":
+		# Hexadecimal
+		# 4 bit grouping
+		
+		return numeroAbinario(texto, 4)
+	
+	else:
+		return ""
