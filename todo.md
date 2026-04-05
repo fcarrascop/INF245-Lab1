@@ -26,6 +26,7 @@
 	- [ ] Supuestos utilizados
 - [ ] Comentar y documentar la tarea.
 - [ ] Pruebas con ejemplos (Chatgpt)
+- [ ] Cambiar "examples" por "ejemplos"
 - [ ] (opcional) Divertirse
 
 ## Que nos falta
