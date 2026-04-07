@@ -25,7 +25,8 @@ def decimal(tipo: str, texto: str) -> str:
         return texto
     elif tipo == "*":
     	# Binario
-    	# División repetida
+    	# Método de Horner
+
         suma = 0
 
         for x in texto:
@@ -35,7 +36,8 @@ def decimal(tipo: str, texto: str) -> str:
 
     elif tipo == "&":
     	# Octal
-    	# División repetida
+    	# Método de Horner
+
         suma = 0
         lista = [ bases[x] for x in texto]
         for x in lista:
@@ -47,7 +49,7 @@ def decimal(tipo: str, texto: str) -> str:
 
     elif tipo == "!":
     	# Hexadecimal
-    	# División repetida
+    	# Método de Horner
 
         return str(MetodoHorner(texto, 16))
     else:

@@ -59,7 +59,7 @@ def binario(tipo: str, texto: str) -> str:
 
     elif tipo == "&":
 		# Octal
-		# 3 bit grouping
+		# Conversión por agrupación de 3 bits
 
         final = ""
 
@@ -70,7 +70,8 @@ def binario(tipo: str, texto: str) -> str:
 
     elif tipo == "#":
     	# Decimal
-    	# Método de Horner
+    	# Divisiones sucesivas entre 2
+         
         numero = int(texto)
         final = ""
 
@@ -83,7 +84,8 @@ def binario(tipo: str, texto: str) -> str:
 
     elif tipo == "!":
         # Hexadecimal
-        # 4 bit grouping
+        # Conversión por agrupación de 4 bits
+        
         resultado = ""
 
         textoHex = texto.upper()

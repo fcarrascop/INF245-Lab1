@@ -75,13 +75,15 @@ def hexadecimal(tipo: str, texto: str) -> str:
 
     elif tipo == "*":
     	# Binario
+        # Agrupación de bits de 3 en 3
+
         numFinal = leerBinAHexa(partirString(texto, 4))
 
         return numFinal
 
     elif tipo == "&":
     	# Octal
-    	# Conversión de base pasando por decimal
+    	# Agrupación de bits pasando por binario
 
         numeroNuevo = numeroAbinario(texto, 3)
         numFinal = leerBinAHexa(partirString(numeroNuevo, 4))

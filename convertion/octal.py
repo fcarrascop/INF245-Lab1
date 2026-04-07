@@ -83,7 +83,7 @@ def octal(tipo: str, texto: str) -> str:
         return texto
     elif tipo == "*":
         # Binario
-        # Agrupación de bits
+        # Agrupación de bits de 3 en 3
 
         lista = partirString(texto, 3)
         final = [ "01234567"[leerBinario(x)] for x in lista]
@@ -92,7 +92,7 @@ def octal(tipo: str, texto: str) -> str:
         return caracter
     elif tipo == "#":
         # Decimal
-        # Variación Método de Horner
+        # Divisiones sucesivas entre 16
 
         numero = int(texto)
         final = ""
@@ -105,6 +105,8 @@ def octal(tipo: str, texto: str) -> str:
         return final[::-1]
 
     elif tipo == "!":
+        # Hexadecimal 
+        # Agrupación de bits pasando por binario
 
         numeroNuevo = numeroAbinario(texto, 4)
         numFinal = leerBinAOctal(partirString(numeroNuevo, 3))

@@ -40,7 +40,7 @@ def numeroAAscii(numero: str, base: int) -> str:
 	valor = MetodoHorner(numero, base)
 
 	if valor <= 126 and 32 <= valor:
-		letraMensaje = ascii[valor]
+		letraMensaje = chr(valor)
 		return letraMensaje
 
 	return ""
