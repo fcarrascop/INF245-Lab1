@@ -69,10 +69,8 @@ def leerArchivo():
 
             if caracter in "*&#!" and i + 1 < len(linea):
                 caracteresAceptados = aceptados[caracter]
-                print(caracteresAceptados)
                 pos_primer_numero = i + 1
                 if linea[pos_primer_numero] in caracteresAceptados:
-                    print("caracter aceptado")
                     pos_segundo_numero = pos_primer_numero
 
                     while pos_segundo_numero < len(linea) and linea[pos_segundo_numero] in caracteresAceptados:
@@ -82,9 +80,12 @@ def leerArchivo():
 
                     valorFinal = transformaciones[baseSolicitada](caracter, textoNumero)
 
-                    mensaje += printValores(valor, caracter, textoNumero, valorFinal.lstrip("0"), int(baseSolicitada))
+                    valorPrint =  printValores(valor, caracter, textoNumero, valorFinal.lstrip("0"), int(baseSolicitada))
+                    if (valorPrint != ""):
+                        mensaje += valorPrint
+                        valor += 1
 
-                    valor += 1
+                    # valor += 1
             i = i + 1
         break
 
