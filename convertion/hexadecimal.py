@@ -75,7 +75,7 @@ def hexadecimal(tipo: str, texto: str) -> str:
 
     elif tipo == "*":
     	# Binario
-        # Agrupación de bits de 3 en 3
+        # Agrupación de 4 bits y mapeo
 
         numFinal = leerBinAHexa(partirString(texto, 4))
 
@@ -83,7 +83,7 @@ def hexadecimal(tipo: str, texto: str) -> str:
 
     elif tipo == "&":
     	# Octal
-    	# Agrupación de bits pasando por binario
+    	# Conversión por agrupación de bits pasando por binario
 
         numeroNuevo = numeroAbinario(texto, 3)
         numFinal = leerBinAHexa(partirString(numeroNuevo, 4))
@@ -92,13 +92,10 @@ def hexadecimal(tipo: str, texto: str) -> str:
 
     elif tipo == "#":
     	# Decimal
-    	# ~Expanción posicional~
-    	# Variación Método de Horner
+    	# Divisiones sucesivas entre 16
 
         numFinal = pasarAHexa(int(texto))
 
         return numFinal
     else:
     	return ""
-
-# Yo (felipe) estuve modificando algunas cosas por acá, por lo que si algo falla, toda la culpa a mi.

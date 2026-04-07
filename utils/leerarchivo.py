@@ -4,6 +4,8 @@ from convertion.decimal import decimal
 from convertion.hexadecimal import hexadecimal
 from utils.printValores import printValores
 
+archivoALeer = "notas_dm.txt"
+
 aceptados = {
 	"*": "01",
 	"&": "01234567",
@@ -40,7 +42,7 @@ def leerArchivo():
 
     valor = 1
     mensaje = ""
-    archivo = "notas_dm.txt"
+    archivo = archivoALeer
 
     print("--- DECODIFICADOR DE NOTAS ---")
     baseSolicitada = input("Ingrese la base en la que desea visualizar los datos (2, 8, 10, 16): ")
